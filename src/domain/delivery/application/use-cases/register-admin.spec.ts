@@ -1,4 +1,4 @@
-import { InMemoryAdminRepository } from 'test/repositories/in-memory-register-admin-repository'
+import { InMemoryAdminRepository } from 'test/repositories/in-memory-admin-repository'
 import { RegisterAdminUseCase } from './register-admin'
 import { FakeHasher } from 'test/cryptography/fake-hasher'
 
