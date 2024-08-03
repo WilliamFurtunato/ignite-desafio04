@@ -16,6 +16,10 @@ export class Deliveryperson extends Entity<DeliverypersonProps> {
     return this.props.name
   }
 
+  set name(name: string) {
+    this.props.name = name
+  }
+
   get cpf() {
     return this.props.cpf
   }

@@ -19,4 +19,28 @@ export class InMemoryDeliverypersonRepository
   async create(deliveryperson: Deliveryperson) {
     this.items.push(deliveryperson)
   }
+
+  async findById(id: string): Promise<Deliveryperson | null> {
+    const deliveryperson = this.items.find((item) => item.id.toString() === id)
+
+    if (!deliveryperson) {
+      return null
+    }
+
+    return deliveryperson
+  }
+
+  async delete(id: string): Promise<void> {
+    const itemIndex = this.items.findIndex((item) => item.id.toString() === id)
+
+    this.items.splice(itemIndex, 1)
+  }
+
+  async save(deliveryperson: Deliveryperson): Promise<void> {
+    const itemIndex = this.items.findIndex(
+      (item) => item.id === deliveryperson.id,
+    )
+
+    this.items[itemIndex] = deliveryperson
+  }
 }
