@@ -20,7 +20,6 @@ describe('Create Order', () => {
 
     sut = new FetchDeliverypersonOrdersUseCase(
       inMemoryOrderRepository,
-      inMemoryDeliverypersonRepository,
       inMemoryAdminRepository,
     )
   })
@@ -42,11 +41,17 @@ describe('Create Order', () => {
     })
     await inMemoryOrderRepository.create(order2)
 
-    await sut.execute({
+    const order3 = makeOrder({
+      deliverypersonId: 'other',
+    })
+    await inMemoryOrderRepository.create(order3)
+
+    const result = await sut.execute({
       adminId: admin.id.toString(),
       deliverypersonId: deliveryperson.id.toString(),
     })
 
-    expect(inMemoryOrderRepository.items).toHaveLength(2)
+    expect(result.isRight()).toBe(true)
+    expect(result.value?.orders).toHaveLength(2)
   })
 })

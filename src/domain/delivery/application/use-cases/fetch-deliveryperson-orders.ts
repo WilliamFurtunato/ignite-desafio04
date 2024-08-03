@@ -1,10 +1,6 @@
-import { Either, left, right } from '@/core/either'
-import { DeliverypersonRepository } from '../repositories/deliveryperson-repository'
+import { Either, right } from '@/core/either'
 import { UserRole } from '@/core/enums/UserRole'
-import { UserAlreadyExistsError } from './errors/user-already-exists-error'
 import { AdminRepository } from '../repositories/admin-repository'
-import { NotAllowedError } from '@/core/errors/not-allowed-error'
-import { UserNotFoundError } from './errors/user-not-found-error'
 import { Order } from '../../enterprise/entities/order'
 import { OrderRepository } from '../repositories/order-repository'
 
@@ -14,7 +10,7 @@ interface FetchDeliverypersonOrdersUseCaseRequest {
 }
 
 type FetchDeliverypersonOrdersUseCaseResponse = Either<
-  UserNotFoundError | NotAllowedError,
+  null,
   {
     orders: Order[]
   }
@@ -23,7 +19,6 @@ type FetchDeliverypersonOrdersUseCaseResponse = Either<
 export class FetchDeliverypersonOrdersUseCase {
   constructor(
     private orderRepository: OrderRepository,
-    private deliverypersonRepository: DeliverypersonRepository,
     private adminRepository: AdminRepository,
   ) {}
 
@@ -34,19 +29,11 @@ export class FetchDeliverypersonOrdersUseCase {
     const admin = await this.adminRepository.findById(adminId)
 
     if (!admin) {
-      return left(new NotAllowedError())
+      return null
     }
     if (UserRole.ADMIN !== admin?.role) {
-      return left(new NotAllowedError())
+      return null
     }
-
-    const deliveryperson =
-      await this.deliverypersonRepository.findById(deliverypersonId)
-
-    if (!deliveryperson) {
-      return left(new UserAlreadyExistsError(deliverypersonId))
-    }
-
     const orders =
       await this.orderRepository.findManyByDeliverypersonId(deliverypersonId)
 

@@ -22,7 +22,7 @@ API para controle de encomendas de uma transportadora fictícia, a FastFeet.
 - Deve ser possível marcar uma encomenda como devolvida
 - Deve ser possível listar as encomendas com endereços de entrega próximo ao local do entregador
 - [x] Deve ser possível alterar a senha de um usuário
-- Deve ser possível listar as entregas de um usuário
+- [x] Deve ser possível listar as entregas de um usuário
 - Deve ser possível notificar o destinatário a cada alteração no status da encomenda
 
 ### Regras de negócio
@@ -33,4 +33,4 @@ API para controle de encomendas de uma transportadora fictícia, a FastFeet.
 - Para marcar uma encomenda como entregue é obrigatório o envio de uma foto
 - Somente o entregador que retirou a encomenda pode marcar ela como entregue
 - [x] Somente o admin pode alterar a senha de um usuário
-- Não deve ser possível um entregador listar as encomendas de outro entregador
+- [x] Não deve ser possível um entregador listar as encomendas de outro entregador
