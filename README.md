@@ -19,7 +19,7 @@ API para controle de encomendas de uma transportadora fictícia, a FastFeet.
 - [x] Deve ser possível marcar uma encomenda como aguardando (Disponível para retirada)
 - [x] Deve ser possível retirar uma encomenda
 - Deve ser possível marcar uma encomenda como entregue
-- Deve ser possível marcar uma encomenda como devolvida
+- [x] Deve ser possível marcar uma encomenda como devolvida
 - Deve ser possível listar as encomendas com endereços de entrega próximo ao local do entregador
 - [x] Deve ser possível alterar a senha de um usuário
 - [x] Deve ser possível listar as entregas de um usuário
@@ -27,7 +27,7 @@ API para controle de encomendas de uma transportadora fictícia, a FastFeet.
 
 ### Regras de negócio
 
-- Somente usuário do tipo admin pode realizar operações de CRUD nas encomendas
+- [x] Somente usuário do tipo admin pode realizar operações de CRUD nas encomendas
 - [x] Somente usuário do tipo admin pode realizar operações de CRUD dos entregadores
 - [x] Somente usuário do tipo admin pode realizar operações de CRUD dos destinatários
 - Para marcar uma encomenda como entregue é obrigatório o envio de uma foto

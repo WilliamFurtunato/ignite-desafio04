@@ -1,8 +1,15 @@
-import { OrderRepository } from '@/domain/delivery/application/repositories/order-repository'
+import {
+  FindManyNearbyParams,
+  OrderRepository,
+} from '@/domain/delivery/application/repositories/order-repository'
 import { Order } from '@/domain/delivery/enterprise/entities/order'
+import { InMemoryRecipientRepository } from './in-memory-recipient-repository'
+import { LocationService } from '@/domain/delivery/application/services/location-service'
 
 export class InMemoryOrderRepository implements OrderRepository {
   public items: Order[] = []
+
+  constructor(private recipientsRepository: InMemoryRecipientRepository) {}
 
   async create(order: Order) {
     this.items.push(order)
@@ -34,5 +41,28 @@ export class InMemoryOrderRepository implements OrderRepository {
     return this.items.filter(
       (item) => item.deliverypersonId?.toString() === deliverypersonId,
     )
+  }
+
+  async findManyNearby(params: FindManyNearbyParams): Promise<Order[]> {
+    const recipients = this.recipientsRepository.items.filter((item) => {
+      const distance = LocationService.getDistanceBetweenCoordinates(
+        {
+          latitude: params.latitude,
+          longitude: params.longitude,
+        },
+        {
+          latitude: item.latitude,
+          longitude: item.longitude,
+        },
+      )
+
+      return distance < 10
+    })
+
+    const recipientsIds = recipients.map((item) => item.id.toString())
+
+    return this.items
+      .filter((item) => item.status === 'waiting')
+      .filter((item) => recipientsIds.includes(item.recipientId.toString()))
   }
 }
