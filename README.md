@@ -12,7 +12,7 @@ API para controle de encomendas de uma transportadora fictícia, a FastFeet.
 ### Regras da aplicação
 
 - [x] A aplicação deve ter dois tipos de usuário, entregador e/ou admin
-- Deve ser possível realizar login com CPF e Senha
+- [x] Deve ser possível realizar login com CPF e Senha
 - [x] Deve ser possível realizar o CRUD dos entregadores
 - Deve ser possível realizar o CRUD das encomendas
 - Deve ser possível realizar o CRUD dos destinatários
