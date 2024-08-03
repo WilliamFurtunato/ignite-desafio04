@@ -15,6 +15,10 @@ export class Recipient extends Entity<RecipientProps> {
     return this.props.name
   }
 
+  set name(name: string) {
+    this.props.name = name
+  }
+
   get email() {
     return this.props.email
   }
