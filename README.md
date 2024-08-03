@@ -16,7 +16,7 @@ API para controle de encomendas de uma transportadora fictícia, a FastFeet.
 - [x] Deve ser possível realizar o CRUD dos entregadores
 - Deve ser possível realizar o CRUD das encomendas
 - [x] Deve ser possível realizar o CRUD dos destinatários
-- Deve ser possível marcar uma encomenda como aguardando (Disponível para retirada)
+- [x] Deve ser possível marcar uma encomenda como aguardando (Disponível para retirada)
 - Deve ser possível retirar uma encomenda
 - Deve ser possível marcar uma encomenda como entregue
 - Deve ser possível marcar uma encomenda como devolvida
